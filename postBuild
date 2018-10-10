@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Install chealpix
+wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && tar xzf chealpix-3.11.4.tar.gz && cd chealpix-3.11.4 && ./configure --enable-shared && make && make install && cd ..
+
+# Install libsharp
+git clone https://github.com/Libsharp/libsharp.git $HOME/software/libsharp && \
+    cd $HOME/software/libsharp && \
+    autoconf -i && \
+    ./configure --enable-pic && \
+    make && \
+    cd
+
+# Clone NaMaster from github
+git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
+
+# Set flags
+export PATH=$HOME/software/libsharp/auto/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/software/libsharp/auto/lib:/usr/local/lib
+export LDFLAGS="-L$HOME/software/libsharp/auto/lib -L/usr/local/lib"
+export CPPFLAGS="-I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
+export CFLAGS="-I$HOME/software/libsharp/auto/include -fopenmp"
+export CPPFLAGS="-I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
+
+# Install NaMaster C libraries
+cd $HOME/software/NaMaster/ && \
+    ./configure --prefix=/usr/local/ && \
+    make && \
+    make install && \
+    make check
+
+# Install NaMaster Python wrapper
+cd $HOME/software/NaMaster && \
+    python setup.py install && \
+    python -m unittest discover -v
