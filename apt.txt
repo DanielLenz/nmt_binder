@@ -10,9 +10,6 @@ pkg-config
 libfftw3-bin
 libfftw3-dev
 libfftw3-3
-gsl-bin
-libgsl23
-libgslcblas0
 autotools-dev
 autoconf
 libcfitsio-dev

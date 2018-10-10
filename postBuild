@@ -10,6 +10,15 @@ git clone https://github.com/Libsharp/libsharp.git $HOME/software/libsharp && \
     ./configure --enable-pic && \
     make && \
     cd
+# Install GSL
+wget https://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software && \
+    cd $HOME/software && \
+    tar -xzf gsl-2.5.tar.gz && \ 
+    cd gsl-2.5 && \
+    ./configure --enable-shared && \
+    make && \
+    make install && \
+    cd
 
 # Clone NaMaster from github
 git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
