@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y \
     libfftw3-bin \
     libfftw3-dev \
     libfftw3-3 \
+    gsl-bin \
+    libgsl0ldbl \
     autotools-dev \
     autoconf \
     libcfitsio-dev \
@@ -50,14 +52,14 @@ RUN git clone https://github.com/Libsharp/libsharp.git $HOME/software/libsharp &
     cd
 
 # Install GSL
-RUN wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software && \
-    cd $HOME/software && \
-    tar -xzf gsl-2.5.tar.gz && \ 
-    cd gsl-2.5 && \
-    ./configure --enable-shared && \
-    make && \
-    make install && \
-    cd
+# RUN wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software && \
+#     cd $HOME/software && \
+#     tar -xzf gsl-2.5.tar.gz && \ 
+#     cd gsl-2.5 && \
+#     ./configure --enable-shared && \
+#     make && \
+#     make install && \
+#     cd
 
 # Clone NaMaster from github
 RUN git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
