@@ -50,6 +50,6 @@ cd $HOME/software/NaMaster/ && \
     make check
 
 # Install NaMaster Python wrapper
-cd $HOME/software/NaMaster && \
-    python setup.py install && \
-    python -m unittest discover -v
+# cd $HOME/software/NaMaster && \
+#     python setup.py install && \
+#     python -m unittest discover -v
