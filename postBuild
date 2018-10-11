@@ -4,12 +4,6 @@
 export BUILD_DIR=$HOME/build_dir
 mkdir -p $BUILD_DIR
 
-# Sets envs and compiler flags
-source $HOME/.envs.sh
-
-# Ensure that this is also run in the .bashrc
-echo "source \$HOME/.envs.sh" >> $HOME/.bashrc
-
 # Install chealpix
 wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && \
     tar xzf chealpix-3.11.4.tar.gz && \
@@ -40,7 +34,11 @@ wget https://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software 
 # Clone NaMaster from github
 git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
 
-# Set flags
+# Sets envs and compiler flags
+source $HOME/.envs.sh
+
+# Ensure that this is also run in the .bashrc
+echo "source \$HOME/.envs.sh" >> $HOME/.bashrc
 
 # Install NaMaster C libraries
 cd $HOME/software/NaMaster/ && \
