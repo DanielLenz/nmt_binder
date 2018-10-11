@@ -44,7 +44,7 @@ export CPPFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -I/
 
 # Install NaMaster C libraries
 cd $HOME/software/NaMaster/ && \
-    ./configure --prefix=$BUILD_DIR && \
+    ./configure --enable-shared --prefix=$BUILD_DIR && \
     make && \
     make install && \
     make check
