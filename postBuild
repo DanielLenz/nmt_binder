@@ -1,7 +1,17 @@
 #!/bin/bash
 
+# Set build dir
+export BUILD_DIR=$HOME/build_dir
+mkdir -p $BUILD_DIR
+
 # Install chealpix
-wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && tar xzf chealpix-3.11.4.tar.gz && cd chealpix-3.11.4 && ./configure --enable-shared && make && make install && cd ..
+wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && \
+    tar xzf chealpix-3.11.4.tar.gz && \
+    cd chealpix-3.11.4 && \
+    ./configure --enable-shared --prefix=$HOME && \
+    make && \
+    make install && \
+    cd
 
 # Install libsharp
 git clone https://github.com/Libsharp/libsharp.git $HOME/software/libsharp && \
@@ -10,12 +20,13 @@ git clone https://github.com/Libsharp/libsharp.git $HOME/software/libsharp && \
     ./configure --enable-pic && \
     make && \
     cd
+
 # Install GSL
 wget https://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software && \
     cd $HOME/software && \
     tar -xzf gsl-2.5.tar.gz && \ 
     cd gsl-2.5 && \
-    ./configure --enable-shared && \
+    ./configure --enable-shared --prefix=$HOME && \
     make && \
     make install && \
     cd
@@ -24,16 +35,16 @@ wget https://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software 
 git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
 
 # Set flags
-export PATH=$HOME/software/libsharp/auto/bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/software/libsharp/auto/lib:/usr/local/lib
-export LDFLAGS="-L$HOME/software/libsharp/auto/lib -L/usr/local/lib"
-export CPPFLAGS="-I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
-export CFLAGS="-I$HOME/software/libsharp/auto/include -fopenmp"
-export CPPFLAGS="-I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
+export PATH=$HOME/software/libsharp/auto/bin:$BUILD_DIR:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BUILD_DIR:$HOME/software/libsharp/auto/lib:/usr/local/lib
+export LDFLAGS="-L$BUILD_DIR/lib -L$HOME/software/libsharp/auto/lib -L/usr/local/lib"
+export CPPFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
+export CFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -fopenmp"
+export CPPFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
 
 # Install NaMaster C libraries
 cd $HOME/software/NaMaster/ && \
-    ./configure --prefix=/usr/local/ && \
+    ./configure --prefix=$BUILD_DIR && \
     make && \
     make install && \
     make check
