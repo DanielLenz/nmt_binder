@@ -35,8 +35,8 @@ wget https://ftp.gnu.org/gnu/gsl/gsl-2.5.tar.gz --passive-ftp -P $HOME/software 
 git clone https://github.com/LSSTDESC/NaMaster $HOME/software/NaMaster
 
 # Set flags
-export PATH=$HOME/software/libsharp/auto/bin:$BUILD_DIR:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BUILD_DIR:$HOME/software/libsharp/auto/lib:/usr/local/lib
+export PATH=$HOME/software/libsharp/auto/bin:$BUILD_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BUILD_DIR/lib:$HOME/software/libsharp/auto/lib:/usr/local/lib
 export LDFLAGS="-L$BUILD_DIR/lib -L$HOME/software/libsharp/auto/lib -L/usr/local/lib"
 export CPPFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -I/usr/local/include -fopenmp"
 export CFLAGS="-I$BUILD_DIR/include -I$HOME/software/libsharp/auto/include -fopenmp"
@@ -50,6 +50,6 @@ cd $HOME/software/NaMaster/ && \
     make check
 
 # Install NaMaster Python wrapper
-# cd $HOME/software/NaMaster && \
-#     python setup.py install && \
-#     python -m unittest discover -v
+cd $HOME/software/NaMaster && \
+    python setup.py install && \
+    python -m unittest discover -v
