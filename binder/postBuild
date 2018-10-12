@@ -4,6 +4,9 @@
 export BUILD_DIR=$HOME/build_dir
 mkdir -p $BUILD_DIR
 
+# Install CIBinfo with pip
+pip install git+git://github.com/DanielLenz/CIBinfo.git
+
 # Install chealpix
 wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && \
     tar xzf chealpix-3.11.4.tar.gz && \
