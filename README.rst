@@ -6,7 +6,7 @@ nmt binder
     :alt: Powered by Astropy Badge
 
 .. image:: https://mybinder.org/badge.svg
-    :target: https://mybinder.org/v2/gh/DanielLenz/nmt_binder/master
+    :target: https://mybinder.org/v2/gh/DanielLenz/nmt_binder/master?urlpath=lab
 
 License
 -------
