@@ -5,7 +5,7 @@ export BUILD_DIR=$HOME/build_dir
 mkdir -p $BUILD_DIR
 
 # Install CIBinfo with pip
-pip install git+git://github.com/DanielLenz/CIBinfo.git
+pip install git+git://github.com/DanielLenz/CIBinfo.git --upgrade
 
 # Install chealpix
 wget https://sourceforge.net/projects/healpix/files/Healpix_3.11/autotools_packages/chealpix-3.11.4.tar.gz && \
@@ -54,3 +54,8 @@ cd $HOME/software/NaMaster/ && \
 cd $HOME/software/NaMaster && \
     python setup.py install && \
     python -m unittest discover -v
+
+# Obtain Planck data
+mkdir -p $HOME/data/planck/raw/masks/
+wget http://pla.esac.esa.int/pla/aio/product-action?MAP.MAP_ID=COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits \
+    -O $HOME/data/planck/raw/masks/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits
