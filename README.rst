@@ -5,8 +5,8 @@ nmt binder
     :target: http://www.astropy.org
     :alt: Powered by Astropy Badge
 
-.. image:: https://mybinder.org/badge.svg :target: https://mybinder.org/v2/gh/DanielLenz/nmt_binder/master?filepath=notebooks%2Fone.ipynb
-
+.. image:: https://mybinder.org/badge.svg
+    :target: https://mybinder.org/v2/gh/DanielLenz/nmt_binder/master?urlpath=lab
 
 License
 -------
